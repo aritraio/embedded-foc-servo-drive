@@ -1,0 +1,28 @@
+# Build directories and artifacts
+build/
+build_*/
+Testing/
+*.o
+*.a
+*.so
+*.dylib
+*.elf
+*.bin
+*.hex
+compile_commands.json
+
+# IDE & Editor files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*~
+
+# Python cache & virtual environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+env/
+venv/
