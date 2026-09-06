@@ -36,7 +36,7 @@ sudo apt install -y gcc-arm-none-eabi gdb-multiarch openocd
 
 ## 2. Build Workflows
 
-The repository uses a unified CMake build system configured via [CMakeLists.txt](file:///Users/aritra/Code/Languages/C++/Project-2/CMakeLists.txt) supporting dual targets:
+The repository uses a unified CMake build system configured via [CMakeLists.txt](../CMakeLists.txt) supporting dual targets:
 
 ### Target A: Desktop Software-in-the-Loop (SIL) Simulation & Tests
 Builds the native desktop simulation engine and all unit tests with strict compiler flags (`-Wall -Wextra -Wpedantic -Wconversion -Werror`):
@@ -171,7 +171,7 @@ python3 tools/calibrate_offset.py
 1. **D-Axis Alignment Vector:** The firmware commands a stationary voltage vector along the stator $d$-axis ($V_d = V_{\text{align}}, V_q = 0, \theta_e = 0$).
 2. **Rotor Lock:** The rotor's magnetic flux locks into alignment with the stator field against any resting friction.
 3. **Angle Acquisition:** The AS5048A 14-bit encoder angle is measured over 1,000 samples and averaged.
-4. **Offset Storage:** The calibrated value $\theta_{\text{offset}}$ is programmed into non-volatile memory or loaded into [config_params.h](file:///Users/aritra/Code/Languages/C++/Project-2/firmware/app/inc/config_params.h).
+4. **Offset Storage:** The calibrated value $\theta_{\text{offset}}$ is programmed into non-volatile memory or loaded into [config_params.h](../firmware/app/inc/config_params.h).
 
 ---
 
@@ -188,7 +188,7 @@ openocd -f interface/stlink.cfg -f target/stm32g4x.cfg \
 
 ### Pre-Flight Safety Checklist
 - [ ] **Current-Limited Power Supply:** Power the DC bus with a benchtop power supply set to nominal motor voltage ($24.0\,\text{V}$) with current limit set to **$1.0\,\text{A}$** for initial bring-up.
-- [ ] **Phase Resistance & Inductance Measurement:** Verify phase resistance ($R_s$) and line-to-line inductance ($L$) with an LCR meter match [config_params.h](file:///Users/aritra/Code/Languages/C++/Project-2/firmware/app/inc/config_params.h).
+- [ ] **Phase Resistance & Inductance Measurement:** Verify phase resistance ($R_s$) and line-to-line inductance ($L$) with an LCR meter match [config_params.h](../firmware/app/inc/config_params.h).
 - [ ] **Oscilloscope Dead-Time Check:** Probe high-side and low-side gate signals on Phase A with an oscilloscope. Ensure dead-time is $\ge 100\,\text{ns}$ and no overlap exists.
 - [ ] **Encoder Direction Verification:** Rotate the rotor by hand clockwise. Confirm measured mechanical angle $\theta_m$ increments monotonically without parity errors.
 - [ ] **Current Sensor Zero-Offset Calibration:** Measure raw ADC counts at rest; verify both Phase A and Phase B shunt amplifiers sit at approximately $V_{ref}/2$ (1.65 V / ~2048 counts).

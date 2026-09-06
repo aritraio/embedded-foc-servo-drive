@@ -2,6 +2,10 @@
 build/
 build_*/
 Testing/
+CMakeFiles/
+CMakeCache.txt
+CTestTestfile.cmake
+cmake_install.cmake
 *.o
 *.a
 *.so
@@ -9,10 +13,17 @@ Testing/
 *.elf
 *.bin
 *.hex
+*.map
 compile_commands.json
+
+# Test & coverage artifacts
+*.gcda
+*.gcno
+*.gcov
 
 # IDE & Editor files
 .DS_Store
+Thumbs.db
 .vscode/
 .idea/
 *.swp
@@ -26,3 +37,4 @@ __pycache__/
 .venv/
 env/
 venv/
+

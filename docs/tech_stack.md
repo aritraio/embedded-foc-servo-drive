@@ -143,7 +143,7 @@ To validate and stress-test the control algorithms under realistic non-ideal ope
   - System status & fault flags ($32$-bit bitfield)
 - **Host Tools:**
   - Python 3 with `pyqtgraph` / `matplotlib` for 60 FPS multi-trace oscilloscope rendering.
-  - Automated zero-angle offset calibration script ([tools/calibrate_offset.py](file:///Users/aritra/Code/Languages/C++/Project-2/tools/calibrate_offset.py)).
+  - Automated zero-angle offset calibration script ([tools/calibrate_offset.py](../tools/calibrate_offset.py)).
 
 ---
 

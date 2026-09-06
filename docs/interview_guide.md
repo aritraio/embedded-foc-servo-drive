@@ -135,7 +135,7 @@ Substituting $i_c = -(i_a + i_b)$:
 $$i_\alpha = \frac{2}{3} \left[ i_a - \frac{1}{2} i_b - \frac{1}{2}(-i_a - i_b) \right] = i_a$$
 $$i_\beta = \frac{2}{3} \left[ \frac{\sqrt{3}}{2} i_b - \left(-\frac{\sqrt{3}}{2}\right)(-i_a - i_b) \right] = \frac{1}{\sqrt{3}} (i_a + 2 i_b)$$
 
-In execution hotpath code ([foc_math.c](file:///Users/aritra/Code/Languages/C++/Project-2/firmware/control/src/foc_math.c)):
+In execution hotpath code ([foc_math.c](../firmware/control/src/foc_math.c)):
 ```c
 i_alpha = i_a;
 i_beta  = (i_a + 2.0f * i_b) * 0.57735026919f; // 1 / sqrt(3)
@@ -311,7 +311,7 @@ $$P[k] = K_p \cdot e[k]$$
 When the motor experiences a large step input or load disturbance, the commanded voltage saturates against the inverter voltage limit $V_{\max}$. If the integrator continues to accumulate error during saturation, the integral state $I[k]$ winds up to a massive value. When the motor finally catches up and the error reverses sign, the controller cannot pull the output out of saturation until the integrator state slowly unaccumulates. This causes **massive overshoot, prolonged settling time, and potential current runaway**.
 
 #### Implemented Solution: Conditional Integration (Clamping):
-In [pid_controller.c](file:///Users/aritra/Code/Languages/C++/Project-2/firmware/control/src/pid_controller.c), the integrator is clamped if and only if:
+In [pid_controller.c](../firmware/control/src/pid_controller.c), the integrator is clamped if and only if:
 1. The previous output reached the saturation boundary ($u[k-1] \ge V_{\max}$ or $u[k-1] \le -V_{\max}$); **AND**
 2. The sign of the current error would drive the integrator further into saturation ($e[k] \cdot u[k-1] > 0$).
 
@@ -336,7 +336,7 @@ This provides pristine derivative damping while rolling off high-frequency noise
 ### 7-Segment Jerk-Bounded S-Curve Trajectory Profiler
 Trapezoidal motion profiles command instantaneous step changes in acceleration, resulting in **infinite jerk ($da/dt \to \infty$)**. In high-torque robotic actuators, infinite jerk excites mechanical natural frequencies, causes audible acoustic ringing, and damages gearbox teeth.
 
-The integrated 7-segment S-curve profile in [motion_profiler.c](file:///Users/aritra/Code/Languages/C++/Project-2/firmware/control/src/motion_profiler.c) enforces:
+The integrated 7-segment S-curve profile in [motion_profiler.c](../firmware/control/src/motion_profiler.c) enforces:
 - Maximum Jerk: $J_{\max}$
 - Maximum Acceleration: $A_{\max}$
 - Maximum Velocity: $V_{\max}$
@@ -458,7 +458,7 @@ RK4 provides a local truncation error of $\mathcal{O}(h^5)$ and a global error o
 ## 8. Safety, Fault Supervision & Telemetry Architecture
 
 ### Multi-Tiered Safety Supervisor
-The safety subsystem implemented in [foc_app.c](file:///Users/aritra/Code/Languages/C++/Project-2/firmware/app/src/foc_app.c) enforces defense-in-depth protection:
+The safety subsystem implemented in [foc_app.c](../firmware/app/src/foc_app.c) enforces defense-in-depth protection:
 
 | Fault Condition | Detection Mechanism | Response Time | Action Taken |
 |---|---|---|---|

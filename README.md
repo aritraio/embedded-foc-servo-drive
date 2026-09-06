@@ -20,10 +20,12 @@ For exhaustive technical deep-dives, mathematical proofs, and interview preparat
 
 | Document | Description |
 |---|---|
-| 📖 **[EXPLANATION.md](file:///Users/aritra/Code/Languages/C++/Project-2/EXPLANATION.md)** | **Master Technical Interview Guide:** Complete end-to-end breakdown of motor physics, FOC vector math, SVPWM derivations, hardware valley sampling, digital filter design, anti-windup clamping, and **25+ Tier-1 robotics/firmware interview questions with model answers**. |
-| 🏛️ **[ARCHITECTURE.md](file:///Users/aritra/Code/Languages/C++/Project-2/ARCHITECTURE.md)** | **System Architecture & Specifications:** Multi-rate timing diagrams, STM32G4 peripheral synchronization, cycle-accurate execution timing budgets, vector transformations, and state machine design. |
-| 🛠️ **[WORKFLOW.md](file:///Users/aritra/Code/Languages/C++/Project-2/WORKFLOW.md)** | **Developer & Operational Workflow:** Compilation guide for native desktop SIL and ARM cross-compilation, automated CTest harness, Python tuning scope, electrical zero-angle calibration, and hardware flashing. |
-| 💻 **[TECH_STACK.md](file:///Users/aritra/Code/Languages/C++/Project-2/TECH_STACK.md)** | **Technology Stack & Tooling:** Detailed catalog of languages (C11, C++20, Python 3), STM32G4 silicon peripherals, gate drivers, magnetic encoders, and numerical physics integration engines. |
+| 📖 **[Interview & Engineering Guide](docs/interview_guide.md)** | **Master Technical Interview Guide:** Complete end-to-end breakdown of motor physics, FOC vector math, SVPWM derivations, hardware valley sampling, digital filter design, anti-windup clamping, and **25+ Tier-1 robotics/firmware interview questions with model answers**. |
+| 🏛️ **[System Architecture](docs/architecture.md)** | **System Architecture & Specifications:** Multi-rate timing diagrams, STM32G4 peripheral synchronization, cycle-accurate execution timing budgets, vector transformations, and state machine design. |
+| 🛠️ **[Developer Workflow](docs/workflow.md)** | **Developer & Operational Workflow:** Compilation guide for native desktop SIL and ARM cross-compilation, automated CTest harness, Python tuning scope, electrical zero-angle calibration, and hardware flashing. |
+| 💻 **[Technology Stack](docs/tech_stack.md)** | **Technology Stack & Tooling:** Detailed catalog of languages (C11, C++20, Python 3), STM32G4 silicon peripherals, gate drivers, magnetic encoders, and numerical physics integration engines. |
+| 🗺️ **[Memory Map](docs/memory_map.md)** | **Memory Layout:** STM32G4 Flash, SRAM, DMA circular buffer, and stack layout specifications. |
+| 📐 **[SVPWM Derivation](docs/svpwm_derivation.md)** | **Modulation Geometry:** Mathematical derivation of Space Vector PWM sector identification, dwell times, and overmodulation. |
 
 ---
 
@@ -39,7 +41,7 @@ For exhaustive technical deep-dives, mathematical proofs, and interview preparat
   - **25.0 kHz Current Loop:** Decoupled PI regulators with conditional anti-windup clamping.
 - **High-Fidelity C++20 SIL Simulator:** 4th-order Runge-Kutta (RK4) integration modeling non-linear motor dynamics, gate-driver dead-time distortion, DC bus sag, and 14-bit encoder quantization.
 - **Sub-$1.0\,\mu\text{s}$ Hardware Fault Protection:** Hardware analog comparator wired to `TIM1_BKIN` shuts down PWM outputs asynchronously on overcurrent, complemented by software over/undervoltage and thermal derating.
-- **Real-Time Binary Telemetry Suite:** 1 kHz telemetry streaming using Consistent Overhead Byte Stuffing (COBS) and CRC32 verification with an interactive Python oscilloscope ([tools/foc_tuner.py](file:///Users/aritra/Code/Languages/C++/Project-2/tools/foc_tuner.py)).
+- **Real-Time Binary Telemetry Suite:** 1 kHz telemetry streaming using Consistent Overhead Byte Stuffing (COBS) and CRC32 verification with an interactive Python oscilloscope ([tools/foc_tuner.py](tools/foc_tuner.py)).
 - **Zero Dynamic Memory Allocation:** Strictly 0 bytes allocated on the heap during real-time execution; MISRA-C aligned safety practices.
 
 ---
@@ -74,7 +76,7 @@ For exhaustive technical deep-dives, mathematical proofs, and interview preparat
 The codebase compiles with zero warnings under strict flags (`-Wall -Wextra -Wpedantic -Wconversion -Werror`) and passes 100% of automated tests across 8 comprehensive suites:
 
 ```text
-Test project /Users/aritra/Code/Languages/C++/Project-2/build
+Test project .../build
     Start 1: test_smoke
 1/8 Test #1: test_smoke .......................   Passed (0.01 sec)
     Start 2: test_foc_math
